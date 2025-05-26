@@ -1,0 +1,167 @@
+# Describe the suite
+description: "OCR Table Evaluation - Markdown from Image"
+# Which models to run
+providers:
+  # - {id: openai:gpt-4o, config: { image_handling: true} }
+
+  #Anthropic
+  # - {id: openrouter:anthropic/claude-3-opus, config: { image_handling: true} }
+  - {id: openrouter:anthropic/claude-3.7-sonnet, config: { image_handling: true } }
+  - {id: openrouter:anthropic/claude-3.5-sonnet, config: { image_handling: true} }
+
+
+  # #Google
+  - {id: openrouter:google/gemini-2.5-flash-preview, config: { image_handling: true } }
+  - {id: openrouter:google/gemini-pro-1.5, config: { image_handling: true} }
+
+  # #openai
+  # - {id: openrouter:openai/gpt-4o, config: { image_handling: true} }
+  - {id: openrouter:openai/gpt-4-turbo, config: { image_handling: true} }
+  - {id: openrouter:openai/gpt-4.1, config: { image_handling: true} }
+  - {id: openrouter:openai/gpt-4o-mini, config: { image_handling: true} }
+
+
+  # #Others
+  - {id: openrouter:qwen/qwen2.5-vl-72b-instruct, config: { image_handling: true } }
+  - {id: openrouter:amazon/nova-pro-v1, config: { image_handling: true} }
+
+
+
+prompts:
+- |-
+  [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "You are an expert OCR system. Given the image of a table below, extract and return the table exactly in GitHub-flavored Markdown format. Ensure that all rows, columns, text, and numbers are captured accurately. Keep the layout intact. Only output the markdown table, with no explanation."
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/png;base64,{{image}}"
+          }
+        }
+      ]
+    }
+  ]
+- |-
+  [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Extract the table from the image and convert it into a markdown table. Ensure the structure (rows and columns), cell contents, and formatting are preserved. Double-check for missing or misaligned cells. Return only the markdown code, no extra commentary."
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "data:image/png;base64,{{image}}"
+          }
+        }
+      ]
+    }
+  ]
+
+
+# Test cases with vars and assertions
+tests:
+  - description: "Table 11"
+    vars:
+      image: file://./images/img_11.png
+      expected_content: file://./tables/img_11.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+
+  - description: "Table 12"
+    vars:
+      image: file://./images/img_12.png
+      expected_content: file://./tables/img_12.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 13"
+    vars:
+      image: file://./images/img_13.png
+      expected_content: file://./tables/img_13.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 14"
+    vars:
+      image: file://./images/img_14.png
+      expected_content: file://./tables/img_14.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 15"
+    vars:
+      image: file://./images/img_15.png
+      expected_content: file://./tables/img_15.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 16"
+    vars:
+      image: file://./images/img_16.png
+      expected_content: file://./tables/img_16.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 17"
+    vars:
+      image: file://./images/img_17.png
+      expected_content: file://./tables/img_17.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 18"
+    vars:
+      image: file://./images/img_18.png
+      expected_content: file://./tables/img_18.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 19"
+    vars:
+      image: file://./images/img_19.png
+      expected_content: file://./tables/img_19.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+  - description: "Table 20"
+    vars:
+      image: file://./images/img_20.png
+      expected_content: file://./tables/img_20.md
+    assert:
+      - type: python
+        value: file://./table_evaluator.py
+
+
+# Evaluation metrics
+evaluate:
+  mode: diff
+  mode_options:
+    type: markdown
+  metrics:
+    - name: ContentPresence
+      threshold: 0.8
+    - name: CellPositionAccuracy
+      threshold: 0.8
+    - name: StructureCorrectness
+      threshold: 0.8
+    - name: TableMatchScore
+      threshold: 0.8
+# Output format
+output:
+  format: markdown
+  include_metrics: true
+  include_pass_fail: true
+# Persist for the web viewer
+writeLatestResults: true
+# Ensure caching stays on
+commandLineOptions:
+  cache: true

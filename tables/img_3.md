@@ -1,0 +1,12 @@
+| Employee ID | Name               | Position           | Department       | Hire Date   | Salary   | Performance Score | Remote Status | Projects Involved                              |
+|-------------|--------------------|--------------------|------------------|-------------|----------|-------------------|---------------|------------------------------------------------|
+| 001         | Alice Johnson      | Software Engineer   | Development       | 2020-01-15  | $100,000 | 88                | Remote        | Project Alpha, Project Beta                    |
+| 002         | Bob Smith          | Product Manager     | Product Management | 2019-03-22  | $120,000 | 92                | Office        | Project Delta                                   |
+| 003         | Charlie Brown      | Data Scientist      | Data & Analytics   | 2021-06-11  | $110,000 | 85                | Remote        | Project Zeta, Project Gamma                    |
+| 004         | Diana Prince       | UX/UI Designer      | Design             | 2018-12-02  | $95,000  | 90                | Office        | Project Omega                                   |
+| 005         | Edward White       | QA Engineer         | Quality Assurance   | 2022-08-30  | $80,000  | 87                | Remote        | Project Alpha, Project Omega                    |
+| 006         | Fiona Green        | Marketing Strategist | Marketing         | 2020-04-01  | $75,000  | 91                | Office        | Project Delta, Project Beta                     |
+| 007         | George Black       | Systems Analyst     | IT                 | 2017-11-09  | $98,000  | 84                | Remote        | Project Zeta                                    |
+| 008         | Hannah White       | DevOps Engineer     | IT                 | 2019-07-18  | $105,000 | 89                | Office        | Project Beta, Project Omega                     |
+| 009         | Ian Gray           | Business Analyst    | Strategy           | 2021-02-25  | $90,000  | 86                | Remote        | Project Delta                                   |
+| 010         | Julie Adams        | HR Generalist       | Human Resources    | 2023-01-15  | $70,000  | 93                | Office        | Project Gamma                                   |
